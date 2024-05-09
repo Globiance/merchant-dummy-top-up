@@ -1,0 +1,76 @@
+@import "_variables.scss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .tu-jif4 {
+    .body {
+    }
+
+    .h1 {
+      @apply text-8xl;
+    }
+
+    .h2 {
+      @apply text-6xl;
+    }
+
+    .h3 {
+      @apply text-4xl;
+    }
+
+    .h4 {
+      @apply text-2xl;
+    }
+
+    .h5 {
+      @apply text-xl;
+    }
+
+    .h6 {
+      @apply text-lg;
+    }
+
+    .main {
+      @apply lg:w-[900px] m-auto;
+    }
+
+    .a {
+      @apply underline text-blue-600 hover:text-blue-800 visited:text-purple-600;
+    }
+
+    footer {
+      @apply text-left h-[80px] text-white mt-20;
+    }
+
+    svg {
+      display: inline;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+  }
+}
+
+@layer components {
+  .tu-jif4 {
+    .pay-button {
+      & {
+        @apply bg-[#000080] w-[40%] text-white rounded-lg;
+      }
+    }
+  }
+}
+
+@layer utilities {
+}
