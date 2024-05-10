@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+
 export default function NavBar() {
   return (
     <nav>
@@ -13,8 +16,8 @@ export default function NavBar() {
             <h4 className="h4">Transactions</h4>
           </a>
         </div>
-        <a href="#" className="a menu-link">
-          <h4 className="h4">Logout</h4>
+        <a href="#" className="a logout-wrapper h4 ">
+          <FontAwesomeIcon icon={faRightFromBracket} />
         </a>
       </div>
     </nav>

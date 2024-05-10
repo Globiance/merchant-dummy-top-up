@@ -64,6 +64,42 @@
 
 @layer components {
   .tu-jif4 {
+    .main-content {
+      & {
+        @apply relative w-full text-black top-16;
+      }
+
+      & .table-wrapper {
+        @apply bg-white mt-7 p-10 w-[50%] flex justify-center;
+      }
+
+      & .transaction-card {
+        & {
+          @apply w-full flex justify-center;
+        }
+
+        & .transaction-content {
+          & {
+            @apply bg-white mt-7 p-4 w-[50%] flex justify-end;
+          }
+
+          button {
+            @apply bg-[#000080] text-white pt-3 pb-3 px-5 rounded-xl shadow-black shadow-md;
+          }
+        }
+      }
+
+      & .wallet-card {
+        & {
+          @apply w-full flex justify-center;
+        }
+
+        & .wallet-content {
+          @apply bg-white mt-7 p-10 w-[50%] flex justify-between;
+        }
+      }
+    }
+
     .payment-card-section {
       & {
         @apply w-[50%] m-auto justify-center flex flex-wrap mt-10;
@@ -106,6 +142,10 @@
           }
         }
 
+        & .logout-wrapper {
+          @apply flex items-center;
+        }
+
         & .logo-wrapper {
           @apply flex items-center;
         }
@@ -125,12 +165,23 @@
 
 @layer utilities {
   .tu-jif4 {
+    .mart-5 {
+      @apply mt-5;
+    }
     .marb-5 {
       @apply mb-5;
     }
 
     .marb-8 {
       @apply mb-8;
+    }
+
+    .pad-5 {
+      @apply p-5;
+    }
+
+    .padb-2 {
+      @apply pb-2;
     }
   }
 }

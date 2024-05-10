@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import "@/styles/main.scss";
 import Script from "next/script";
 
