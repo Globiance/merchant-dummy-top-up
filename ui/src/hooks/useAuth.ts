@@ -32,9 +32,41 @@ export const useAuth = () => {
     setValue(token);
   };
 
-  const logout = () => {
-    removeValue();
+  const logout = async () => {
+    const response = await fetch("http://localhost:9110/api/auth/logout", {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: "Bearer " + token,
+      },
+    });
+
+    if (response.status === 200) {
+      removeValue();
+    }
   };
 
-  return { login, token, setToken, logout };
+  const register = async (
+    name: string,
+    email: string,
+    password: string,
+    confirmed: string
+  ) => {
+    const response = await fetch("http://localhost:9110/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify({ name, email, password, confirmed }),
+    });
+
+    if (response.status === 200) {
+      const resBody = await response.json();
+      setToken(resBody.data.token);
+
+      router.push("/wallet");
+    }
+  };
+
+  return { login, token, setToken, logout, register };
 };
