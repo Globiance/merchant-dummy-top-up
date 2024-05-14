@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Script
-        src="https://cdn.globiance.com/widget/latest/widget.js"
+        src={process.env.NEXT_PUBLIC_WIDGET_CDN}
         strategy="beforeInteractive"
       />
 
