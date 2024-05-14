@@ -1,7 +1,12 @@
+"use client";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function NavBar() {
+  const { logout } = useAuth();
+
   return (
     <nav>
       <div className="nav-wrapper">
@@ -16,7 +21,7 @@ export default function NavBar() {
             <h4 className="h4">Transactions</h4>
           </a>
         </div>
-        <a href="#" className="a logout-wrapper h4 ">
+        <a onClick={logout} className="a logout-wrapper h4 ">
           <FontAwesomeIcon icon={faRightFromBracket} />
         </a>
       </div>

@@ -1,3 +1,4 @@
+import { useAuth } from "@/hooks/useAuth";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type LoginForm = {
@@ -6,14 +7,19 @@ type LoginForm = {
 };
 
 export default function LoginForm() {
+  const { login } = useAuth();
+
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<LoginForm>();
 
-  const onSubmit: SubmitHandler<LoginForm> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<LoginForm> = (data: LoginForm, event) => {
+    event?.preventDefault();
+
+    login(data.email, data.password);
+  };
 
   return (
     <div className="flex w-full items-center justify-center h-[300px]">
@@ -41,10 +47,13 @@ export default function LoginForm() {
             />
           </div>
         </div>
-        <div className="flex w-[40%] justify-end m-auto">
+        <div className="flex w-[50%] justify-end m-auto">
           <div className="w-[20%]">
-            <button className="bg-[#000080] text-white px-8 pt-2 pb-2 rounded-xl">
-              Submit
+            <button
+              type="submit"
+              className="bg-[#000080] text-white px-8 pt-2 pb-2 rounded-xl"
+            >
+              Login
             </button>
           </div>
         </div>
