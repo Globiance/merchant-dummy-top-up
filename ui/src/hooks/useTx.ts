@@ -3,13 +3,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "./useAuth";
 
-export const useWallet = () => {
+export const useTx = () => {
   const { token } = useAuth();
 
-  const { data } = useQuery({
-    queryKey: ["balance"],
+  const { data, refetch } = useQuery({
+    queryKey: ["tx"],
     queryFn: () => {
-      return fetch("http://localhost:9110/api/wallet/balance", {
+      return fetch("http://localhost:9110/api/transaction", {
         method: "GET",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -19,9 +19,13 @@ export const useWallet = () => {
     },
   });
 
-  const balance = () => {
-    return data?.data?.balance;
+  const transactions = () => {
+    return data?.data;
   };
 
-  return { balance };
+  const reload = () => {
+    refetch();
+  };
+
+  return { transactions, reload };
 };
