@@ -24,6 +24,8 @@ const paymentWebhook = async (req, res) => {
     const t = await db.transaction();
     try {
 
+        console.log(req.body, "got webhook");
+
         let result = req.body
         let event = result.event
         let type = result.type
