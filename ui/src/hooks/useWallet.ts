@@ -2,20 +2,23 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "./useAuth";
+import { useApi } from "./useApi";
 
 export const useWallet = () => {
+  const { compose } = useApi();
   const { token } = useAuth();
 
   const { data } = useQuery({
     queryKey: ["balance"],
-    queryFn: () => {
-      return fetch("http://localhost:9110/api/wallet/balance", {
+    queryFn: async () => {
+      const res = await fetch(compose("/api/wallet/balance"), {
         method: "GET",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
           Authorization: "Bearer " + token,
         },
-      }).then((res) => res.json());
+      });
+      return await res.json();
     },
   });
 

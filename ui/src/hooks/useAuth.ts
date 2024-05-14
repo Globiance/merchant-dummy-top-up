@@ -2,8 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { useSessionStorage } from "usehooks-ts";
+import { useApi } from "./useApi";
 
 export const useAuth = () => {
+  const { compose } = useApi();
   const router = useRouter();
 
   const [token, setValue, removeValue] = useSessionStorage<string | null>(
@@ -12,7 +14,7 @@ export const useAuth = () => {
   );
 
   const login = async (email: string, password: string) => {
-    const response = await fetch("http://localhost:9110/api/auth/login", {
+    const response = await fetch(compose("/api/auth/login"), {
       method: "POST",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -33,7 +35,7 @@ export const useAuth = () => {
   };
 
   const logout = async () => {
-    const response = await fetch("http://localhost:9110/api/auth/logout", {
+    const response = await fetch(compose("/api/auth/logout"), {
       method: "GET",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -52,7 +54,7 @@ export const useAuth = () => {
     password: string,
     confirmed: string
   ) => {
-    const response = await fetch("http://localhost:9110/api/auth/register", {
+    const response = await fetch(compose("/api/auth/register"), {
       method: "POST",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
