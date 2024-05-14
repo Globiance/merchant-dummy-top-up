@@ -1,3 +1,4 @@
+import { useAuth } from "@/hooks/useAuth";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type RegisterForm = {
@@ -11,13 +12,16 @@ export default function RegisterForm() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<RegisterForm>();
 
-  const onSubmit: SubmitHandler<RegisterForm> = (data) => console.log(data);
+  const { register: signup } = useAuth();
 
-  console.log(watch("name"));
+  const onSubmit: SubmitHandler<RegisterForm> = (data: RegisterForm, event) => {
+    event?.preventDefault();
+
+    signup(data.name, data.email, data.password, data.confirmed);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">

@@ -10,7 +10,7 @@ export default function PayButton({ amount, disabled }: IPayButton) {
     const payload = {
       amount: 2,
       note: "Top up payment",
-      apikey: "01259e6d-0369-4ff0-8b9c-4481f43239d9",
+      apikey: process.env.NEXT_PUBLIC_API_KEY,
       language: "en",
       theme: "light",
       itemName: `Topup $ ${amount}`,
