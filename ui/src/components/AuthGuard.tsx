@@ -1,21 +1,29 @@
 "use client";
 
 import { useAuth } from "@/hooks/useAuth";
-import { redirect, usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 export default function AuthGuard({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const queryClient = new QueryClient();
+  const router = useRouter();
+  const wallet = "/wallet";
   const login = "/login";
   const currentPage = usePathname();
 
   const { token } = useAuth();
 
   if (login !== currentPage && !token) {
-    return redirect(login);
+    router.push(login);
+  } else if (login === currentPage && token) {
+    router.push(wallet);
   } else {
-    return <>{children}</>;
+    return (
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    );
   }
 }
