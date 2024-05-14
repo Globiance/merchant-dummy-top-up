@@ -8,9 +8,20 @@ interface IPaymentCard {
 }
 
 export default function PaymentCard({ amount, type }: IPaymentCard) {
-  const [enteredAmount, setEnteredAmount] = useState(0);
+  const [buttonState, setButtonState] = useState({ amount: 0, disabled: true });
+
   const handleOnInput = (event: any) => {
-    setEnteredAmount((event.target as any).value);
+    if ((event.target as any).value) {
+      setButtonState({
+        amount: Number((event.target as any).value),
+        disabled: false,
+      });
+    } else {
+      setButtonState({
+        amount: 0,
+        disabled: true,
+      });
+    }
   };
 
   if (type === "static") {
@@ -38,7 +49,10 @@ export default function PaymentCard({ amount, type }: IPaymentCard) {
             </span>
             <input type="number" />
           </div>
-          <PaymentButton amount={enteredAmount} />
+          <PaymentButton
+            disabled={buttonState.disabled}
+            amount={buttonState.amount}
+          />
         </form>
       </div>
     );

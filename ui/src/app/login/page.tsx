@@ -1,5 +1,7 @@
 "use client";
 
+import LoginForm from "@/components/LoginForm";
+import RegisterForm from "@/components/RegisterForm";
 import { useState } from "react";
 
 export default function Login() {
@@ -33,89 +35,7 @@ export default function Login() {
               </span>
             </div>
             <div className="px-4 mart-5">
-              {tab === "register" ? (
-                <form className="flex flex-col gap-4">
-                  <div className="grid grid-cols-8">
-                    <label className="col-start-1 col-span-2 h6">Name</label>
-                    <div className="col-start-3 col-span-6">
-                      <input
-                        className="border-2 border-solid border-slate-300 rounded-lg bg-slate-300 w-full"
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-8">
-                    <label className="col-start-1 col-span-2 h6">Email</label>
-                    <div className="col-start-3 col-span-6">
-                      <input
-                        className="border-2 border-solid border-slate-300 rounded-lg bg-slate-300 w-full"
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-8">
-                    <label className="col-start-1 col-span-2 h6">
-                      Password
-                    </label>
-                    <div className="col-start-3 col-span-6">
-                      <input
-                        className="border-2 border-solid border-slate-300 rounded-lg bg-slate-300 w-full"
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-8">
-                    <label className="col-start-1 col-span-2 h6">
-                      Confirm Password
-                    </label>
-                    <div className="col-start-3 col-span-6">
-                      <input
-                        className="border-2 border-solid border-slate-300 rounded-lg bg-slate-300 w-full"
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex justify-end w-[87%] m-auto">
-                    <div className="w-[20%]">
-                      <button className="bg-[#000080] text-white px-8 pt-2 pb-2 rounded-xl">
-                        Submit
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              ) : (
-                <div className="flex w-full items-center justify-center h-[300px]">
-                  <form className="flex flex-col gap-4 w-[70%] m-auto">
-                    <div className="grid grid-cols-8">
-                      <label className="col-start-1 col-span-2 h6">Email</label>
-                      <div className="col-start-3 col-span-5">
-                        <input
-                          className="border-2 border-solid border-slate-300 rounded-lg bg-slate-300 w-full"
-                          type="text"
-                        />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-8">
-                      <label className="col-start-1 col-span-2 h6">
-                        Password
-                      </label>
-                      <div className="col-start-3 col-span-5">
-                        <input
-                          className="border-2 border-solid border-slate-300 rounded-lg bg-slate-300 w-full"
-                          type="text"
-                        />
-                      </div>
-                    </div>
-                    <div className="flex w-[40%] justify-end m-auto">
-                      <div className="w-[20%]">
-                        <button className="bg-[#000080] text-white px-8 pt-2 pb-2 rounded-xl">
-                          Submit
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              )}
+              {tab === "register" ? <RegisterForm /> : <LoginForm />}
             </div>
           </div>
         </div>

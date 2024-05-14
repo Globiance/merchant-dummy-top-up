@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "@/styles/main.scss";
 import Script from "next/script";
+import AuthGuard from "@/components/AuthGuard";
 
 const roboto = Roboto({ weight: "500", subsets: ["latin"] });
 
@@ -19,14 +20,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <div className="tu-jif4">
-          {children}
-          <div id="widget"></div>
+        <AuthGuard>
+          <div className="tu-jif4">
+            {children}
+            <div id="widget"></div>
+          </div>
           <Script
             src="https://cdn.globiance.com/widget/latest/widget.js"
             strategy="beforeInteractive"
           />
-        </div>
+        </AuthGuard>
       </body>
     </html>
   );

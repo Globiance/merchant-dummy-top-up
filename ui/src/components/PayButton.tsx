@@ -2,9 +2,10 @@
 
 interface IPayButton {
   amount: number;
+  disabled?: boolean;
 }
 
-export default function PayButton({ amount }: IPayButton) {
+export default function PayButton({ amount, disabled }: IPayButton) {
   const handleOnClick = () => {
     const payload = {
       amount: 2,
@@ -28,8 +29,12 @@ export default function PayButton({ amount }: IPayButton) {
   };
 
   return (
-    <button className="pay-button" onClick={handleOnClick}>
-      <h4 className="h4">Pay</h4>
+    <button
+      disabled={disabled ?? false}
+      className={"pay-button" + (disabled ? " disabled" : "")}
+      onClick={handleOnClick}
+    >
+      <h4 className="h4 m-1">Pay {disabled}</h4>
     </button>
   );
 }
