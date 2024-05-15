@@ -38,7 +38,7 @@ const paymentWebhook = async (req, res) => {
         if (!clientId) {
             return res.status(500).send('Client ID is mandatory');
         }
-        if (event === 'settled' && type === 'payment' && status === 'confirmed') {
+        if (event === 'confirmed' && type === 'payment' && status === 'confirmed') {
             let userWallet = await Wallet.findOne({ where: { userId: clientId } }, { transaction: t })
 
             if (!userWallet) return res.status(500).send('Wallet not found');
@@ -71,7 +71,7 @@ const paymentWebhook = async (req, res) => {
                 message: 'Webhook triggered successfully!'
             })
 
-        } else {
+        } else if (event !== 'confirmed') {
             await Transaction.create({
                 userId: clientId,
                 amount,
