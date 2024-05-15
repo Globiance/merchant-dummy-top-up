@@ -11,7 +11,6 @@ export default function Transactions() {
   return (
     <main className="bg-blue-100 min-h-[100vh]">
       <NavBar />
-
       <div className="main-content">
         <TransactionCard />
         <div className="w-full flex justify-center">
