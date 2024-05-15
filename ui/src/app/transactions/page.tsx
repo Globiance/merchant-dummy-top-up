@@ -29,11 +29,13 @@ export default function Transactions() {
     },
     {
       title: "Initiated At",
-      dataIndex: "initiatedAt"
+      dataIndex: "initiatedAt",
+      render: (value) => new Date(value).toLocaleString('en-US')
     },
     {
       title: "Created At",
-      dataIndex: "createdAt"
+      dataIndex: "createdAt",
+      render: (value) => new Date(value).toLocaleString('en-US')
     },
   ]
 
