@@ -71,11 +71,12 @@
 
       & .table-wrapper {
         & {
-          @apply bg-white mt-7 p-10 xs:w-full lg:w-[80%] flex justify-center overflow-x-auto;
+          @apply bg-white mt-7 p-10 xs:w-full md:w-[80%] flex justify-center
+
         }
 
-        table {
-          @apply w-[1360px]
+        & table {
+          @apply w-full overflow-auto xs:block xl:table
         }
         
       }
@@ -102,7 +103,7 @@
         }
 
         & .wallet-content {
-          @apply bg-white mt-7 p-10 xs:w-full xs:w-[90%] md:w-[50%] flex justify-between;
+          @apply bg-white mt-7 p-10 xs:w-full md:w-[50%] flex justify-between;
         }
       }
     }
