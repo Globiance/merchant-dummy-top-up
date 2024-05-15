@@ -71,7 +71,7 @@ const paymentWebhook = async (req, res) => {
                 message: 'Webhook triggered successfully!'
             })
 
-        } else if (event !== 'confirmed') {
+        } else if (type == 'payment' && event !== 'confirmed') {
             await Transaction.create({
                 userId: clientId,
                 amount,
