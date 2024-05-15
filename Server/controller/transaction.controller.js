@@ -32,7 +32,7 @@ const paymentWebhook = async (req, res) => {
         let clientId = +result.clientId
         let checkoutId = result.checkoutId
         let checkoutTime = result.checkoutTime
-        let amount = result.payload.payment.amount
+        let amount = result.requestCurrencyAmount
         let status = result.payload.payment.status
 
         if (!clientId) {
