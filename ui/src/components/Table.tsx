@@ -1,4 +1,4 @@
-interface ITable {
+interface IRow {
   serialNo: string;
   amount: number;
   status: string;
@@ -8,39 +8,70 @@ interface ITable {
   createdAt: string;
 }
 
-export default function Table({ rows }: { rows: ITable[] }) {
+export interface IColumn {
+  title: string 
+  dataIndex: string
+  render?: (field: string) => React.ReactNode
+}
+
+interface ITable<T = Record<string, any>> {
+  data: T[]
+  columns: IColumn[]
+}
+
+interface ITableHeader {
+  title: string
+}
+
+interface ITableCell {
+  content: React.ReactNode
+}
+
+interface ITableRow {
+  cells: React.ReactNode[]
+}
+
+function TableHeader({ title }:ITableHeader) {
+  return (<th>{title}</th>)
+}
+
+function TableRow({cells}: ITableRow) {
+  return (<tr>{cells.map((cell) => cell)}</tr>)
+}
+
+function TableCell({content}: ITableCell) {
+  return (<td className="border-2 border-black">{content}</td>)
+}
+
+export default function Table({ data, columns }: ITable) {
+
+  const headers = columns.map((column, i) => {
+    return (<TableCell key={i} content={column.title}/>)
+  })
+
+  const rows = data.map((row, i) => {
+    const cells = []
+    for (const [key, value] of Object.entries(row)) {
+      let j = 0
+      for (const column of columns) {
+        if (column.dataIndex === key) {
+          cells.push(<TableCell key={j} content={column.render ? column.render(value) : value}/>)
+        }
+        j++
+      }
+    }
+
+    return (<TableRow key={i} cells={cells}/>)
+  })
+
   return (
     <table>
       <thead>
-        <tr>
-          <th className="border-2 border-black p-3">Sr.No</th>
-          <th className="border-2 border-black p-3">Amount</th>
-          <th className="border-2 border-black p-3">Status</th>
-          <th className="border-2 border-black p-3">Transaction ID</th>
-          <th className="border-2 border-black p-3">Checkout ID</th>
-          <th className="border-2 border-black p-3">Initiated At</th>
-          <th className="border-2 border-black p-3">Created At</th>
-        </tr>
+        <TableRow cells={headers} />
       </thead>
       <tbody>
-        {rows ? (
-          rows.map((row: ITable, i: number) => {
-            return (
-              <tr key={i}>
-                <td className="border-2 border-black p-3">{i + 1}</td>
-                <td className="border-2 border-black p-3">{row.amount}</td>
-                <td className="border-2 border-black p-3">{row.status}</td>
-                <td className="border-2 border-black p-3">{row.id}</td>
-                <td className="border-2 border-black p-3">{row.checkoutId}</td>
-                <td className="border-2 border-black p-3">{row.initiatedAt}</td>
-                <td className="border-2 border-black p-3">{row.createdAt}</td>
-              </tr>
-            );
-          })
-        ) : (
-          <></>
-        )}
+        {rows.map((row) => row)}
       </tbody>
     </table>
-  );
+  )
 }
