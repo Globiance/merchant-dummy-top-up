@@ -23,7 +23,6 @@ export const useTx = () => {
   });
 
   const transactions = () => {
-    console.log(data?.data);
     return data?.data;
   };
 
