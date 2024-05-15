@@ -11,7 +11,7 @@ interface ITable {
 export default function Table({ rows }: { rows: ITable[] }) {
   return (
     <table>
-      <thead className="">
+      <thead>
         <tr>
           <th className="border-2 border-black p-3">Sr.No</th>
           <th className="border-2 border-black p-3">Amount</th>

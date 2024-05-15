@@ -26,7 +26,7 @@ export default function PaymentCard({ amount, type }: IPaymentCard) {
 
   if (type === "static") {
     return (
-      <div className="w-1/3">
+      <div className="xl:w-1/3 xs:w-full">
         <div className="payment-card-wrapper">
           <h4 className="h4 marb-5">Top Up</h4>
           <h2 className="h2 marb-8">$ {amount}</h2>
@@ -36,7 +36,7 @@ export default function PaymentCard({ amount, type }: IPaymentCard) {
     );
   } else {
     return (
-      <div className="w-1/3">
+      <div className="xl:w-1/3 xs:w-full">
         <form
           className="payment-card-wrapper-form"
           onSubmit={(e) => e.preventDefault()}
