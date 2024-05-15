@@ -5,6 +5,7 @@ import "@/styles/main.scss";
 import Script from "next/script";
 import AuthGuard from "@/components/AuthGuard";
 import StyleGuard from "@/components/StyleGuard";
+import { Suspense } from "react";
 
 const roboto = Roboto({ weight: "500", subsets: ["latin"] });
 
@@ -20,16 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Script
-        src={process.env.NEXT_PUBLIC_WIDGET_CDN}
-        strategy="beforeInteractive"
-      />
-
       <body className={roboto.className}>
+        
         <AuthGuard>
           <StyleGuard>{children}</StyleGuard>
         </AuthGuard>
-        <div id="widget"></div>
+       
+        
       </body>
     </html>
   );

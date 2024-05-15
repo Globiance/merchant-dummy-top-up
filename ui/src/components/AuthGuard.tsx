@@ -13,7 +13,7 @@ export default function AuthGuard({
   const router = useRouter();
   const wallet = "/wallet";
   const login = "/login";
-  const currentPage = usePathname();
+  const currentPage =  {}
 
   const { token } = useAuth();
 
