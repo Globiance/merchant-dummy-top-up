@@ -25,10 +25,14 @@ const paymentWebhook = async (req, res) => {
     try {
 
         console.log(req.body, "got webhook");
+        
 
         let result = req.body
         let event = result.event
         let type = result.type
+
+        if (type !== 'payment') return 
+
         let clientId = +result.clientId
         let checkoutId = result.checkoutId
         let checkoutTime = result.checkoutTime
