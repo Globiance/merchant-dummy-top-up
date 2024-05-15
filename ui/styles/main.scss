@@ -70,7 +70,15 @@
       }
 
       & .table-wrapper {
-        @apply bg-white mt-7 p-10 w-[50%] flex justify-center;
+        & {
+          @apply bg-white mt-7 p-10 xs:w-full md:w-[80%] flex justify-center
+
+        }
+
+        & table {
+          @apply w-full overflow-auto xs:block xl:table
+        }
+        
       }
 
       & .transaction-card {
@@ -80,7 +88,7 @@
 
         & .transaction-content {
           & {
-            @apply bg-white mt-7 p-4 w-[50%] flex justify-end;
+            @apply bg-white mt-7 p-4 xs:w-full lg:w-[50%] flex justify-end;
           }
 
           button {
@@ -95,14 +103,14 @@
         }
 
         & .wallet-content {
-          @apply bg-white mt-7 p-10 w-[50%] flex justify-between;
+          @apply bg-white mt-7 p-10 xs:w-full md:w-[50%] flex justify-between;
         }
       }
     }
 
     .payment-card-section {
       & {
-        @apply w-[50%] m-auto justify-center flex flex-wrap mt-10;
+        @apply xs:w-full sm:w-[50%] m-auto justify-center flex flex-wrap mt-10;
       }
     }
 
@@ -134,7 +142,7 @@
 
         & .main-menu-wrapper {
           & {
-            @apply flex justify-center gap-24 w-full;
+            @apply flex justify-center xs:gap-4 lg:gap-24 w-full;
           }
 
           & .menu-link {
@@ -147,7 +155,7 @@
         }
 
         & .logo-wrapper {
-          @apply flex items-center;
+          @apply flex items-center hidden lg:block;
         }
       }
 

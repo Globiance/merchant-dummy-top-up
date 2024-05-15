@@ -3,9 +3,10 @@
 interface IPayButton {
   amount: number;
   disabled?: boolean;
+  clientId: string
 }
 
-export default function PayButton({ amount, disabled }: IPayButton) {
+export default function PayButton({ amount, disabled, clientId}: IPayButton) {
   const handleOnClick = () => {
     const payload = {
       amount: 2,
@@ -15,6 +16,7 @@ export default function PayButton({ amount, disabled }: IPayButton) {
       theme: "light",
       itemName: `Topup $ ${amount}`,
       currency: "USD",
+      clientId,
       items: [
         {
           itemName: "Top up",

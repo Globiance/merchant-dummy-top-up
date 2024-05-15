@@ -12,6 +12,7 @@ export const useAuth = () => {
     "token",
     null
   );
+  const [user, setUser] = useSessionStorage<string | null>("user", null)
 
   const login = async (email: string, password: string) => {
     const response = await fetch(compose("/api/auth/login"), {
@@ -24,7 +25,8 @@ export const useAuth = () => {
 
     if (response.status === 200) {
       const resBody = await response.json();
-      setToken(resBody.data.token);
+      setValue(resBody.data.token);
+      setUser(resBody.data.user)
 
       router.push("/wallet");
     }
@@ -70,5 +72,5 @@ export const useAuth = () => {
     }
   };
 
-  return { login, token, setToken, logout, register };
+  return { user, login, token, setToken, logout, register };
 };

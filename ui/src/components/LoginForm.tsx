@@ -28,8 +28,8 @@ export default function LoginForm() {
         className="flex flex-col gap-4 w-[70%] m-auto"
       >
         <div className="grid grid-cols-8">
-          <label className="col-start-1 col-span-2 h6">Email</label>
-          <div className="col-start-3 col-span-5">
+          <label className="col-start-1 xs:col-span-4 xl:col-span-2 h6">Email</label>
+          <div className="xs:col-start-5 xl:col-start-3 col-span-8">
             <input
               className="border-2 border-solid border-slate-300 rounded-lg bg-slate-300 w-full"
               type="text"
@@ -38,8 +38,8 @@ export default function LoginForm() {
           </div>
         </div>
         <div className="grid grid-cols-8">
-          <label className="col-start-1 col-span-2 h6">Password</label>
-          <div className="col-start-3 col-span-5">
+          <label className="col-start-1 xs:col-span-4 xl:col-span-2 h6">Password</label>
+          <div className="xs:col-start-5 xl:col-start-3 col-span-8">
             <input
               className="border-2 border-solid border-slate-300 rounded-lg bg-slate-300 w-full"
               type="password"
@@ -47,15 +47,13 @@ export default function LoginForm() {
             />
           </div>
         </div>
-        <div className="flex w-[50%] justify-end m-auto">
-          <div className="w-[20%]">
+        <div className="flex w-full justify-end m-auto">
             <button
               type="submit"
               className="bg-[#000080] text-white px-8 pt-2 pb-2 rounded-xl"
             >
               Login
             </button>
-          </div>
         </div>
       </form>
     </div>
