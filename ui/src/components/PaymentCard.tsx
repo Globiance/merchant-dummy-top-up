@@ -14,7 +14,7 @@ export default function PaymentCard({ amount, type }: IPaymentCard) {
   const [currentUser, setCurrentUser] = useState({})
 
   useEffect(() => {
-    setCurrentUser(user as any)
+    setCurrentUser(user ?? {})
   }, [user])
 
   const handleOnInput = (event: any) => {
