@@ -24,7 +24,9 @@ export default function AuthGuard({
       setRedirect(login)
     } else if (login === currentPage && token) {
       setRedirect(wallet)
-    } 
+    } else {
+      setRedirect(null)
+    }
   }, [currentPage, token])
 
   if (isRedirect) {

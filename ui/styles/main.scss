@@ -5,8 +5,10 @@
 @tailwind utilities;
 
 @layer base {
+  
   .tu-jif4 {
-    .body {
+    &.body {
+      @apply bg-blue-100 min-h-[100vh]
     }
 
     .h1 {
