@@ -20,7 +20,7 @@ export default function Login() {
   };
 
   return (
-    <main className="bg-blue-100 min-h-[100vh]">
+    <div className="bg-blue-100 min-h-[100vh]">
       <div className="flex justify-center items-center min-h-[100vh]">
         <div className="lg:w-[40%] h-full">
           <div className="w-full bg-white shadow-sm min-h-[400px] rounded-xl">
@@ -40,6 +40,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

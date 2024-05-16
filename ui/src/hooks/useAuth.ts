@@ -1,5 +1,3 @@
-"use client";
-
 import { useRouter } from "next/navigation";
 import { useSessionStorage } from "usehooks-ts";
 import { useApi } from "./useApi";

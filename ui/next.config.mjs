@@ -3,6 +3,7 @@
 import path from "path";
 
 const nextConfig = {
+  output: 'export',
   sassOptions: {
     includePaths: [path.join(".", "styles")],
   },
