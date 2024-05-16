@@ -15,7 +15,7 @@ export default function Wallet() {
   },[balance])
 
   return (
-    <div>
+    <div className="bg-blue-100 min-h-[100vh]">
       <NavBar />
       <div className="main-content">
         <WalletCard balance={Number(currentBalance)} refetch={() => refetch()}  />
