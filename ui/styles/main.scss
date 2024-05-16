@@ -71,11 +71,11 @@
 
       & .table-wrapper {
         & {
-          @apply bg-white mt-7 p-10 xs:w-full lg:w-[80%] flex justify-center overflow-x-auto;
+          @apply bg-white mt-7 p-10 xs:w-full lg:w-[80%] flex justify-center h-[75vh] overflow-auto;
         }
 
         table {
-          @apply w-[1360px]
+          @apply w-[1360px] overflow-auto xs:block xl:table
         }
         
       }
