@@ -3,5 +3,5 @@ export default function StyleGuard({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div className="tu-jif4">{children}</div>;
+  return <main className="tu-jif4">{children}</main>;
 }

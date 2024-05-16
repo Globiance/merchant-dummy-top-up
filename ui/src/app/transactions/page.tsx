@@ -47,7 +47,7 @@ export default function Transactions() {
   })
 
   return (
-    <main className="bg-blue-100 min-h-[100vh]">
+    <div className="bg-blue-100 min-h-[100vh]">
       <NavBar />
       <div className="main-content">
         <TransactionCard />
@@ -57,6 +57,6 @@ export default function Transactions() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

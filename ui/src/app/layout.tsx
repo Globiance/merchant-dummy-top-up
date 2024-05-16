@@ -20,16 +20,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Script
-        src={process.env.NEXT_PUBLIC_WIDGET_CDN}
-        strategy="beforeInteractive"
-      />
-
       <body className={roboto.className}>
+        
         <AuthGuard>
           <StyleGuard>{children}</StyleGuard>
         </AuthGuard>
         <div id="widget"></div>
+        <Script
+        src={process.env.NEXT_PUBLIC_WIDGET_CDN}
+        strategy="beforeInteractive"
+      />
       </body>
     </html>
   );

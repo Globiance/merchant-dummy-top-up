@@ -71,12 +71,20 @@
 
       & .table-wrapper {
         & {
+<<<<<<< HEAD
           @apply bg-white mt-7 p-10 xs:w-full md:w-[80%] flex justify-center
 
         }
 
         & table {
           @apply w-full overflow-auto xs:block xl:table
+=======
+          @apply bg-white mt-7 p-10 xs:w-full lg:w-[80%] flex justify-center overflow-x-auto;
+        }
+
+        table {
+          @apply w-[1360px]
+>>>>>>> feature/frontend
         }
         
       }
@@ -88,7 +96,11 @@
 
         & .transaction-content {
           & {
+<<<<<<< HEAD
             @apply bg-white mt-7 p-4 xs:w-full lg:w-[50%] flex justify-end;
+=======
+            @apply bg-white mt-7 p-4 xs:w-full lg:w-[80%] flex justify-end;
+>>>>>>> feature/frontend
           }
 
           button {
@@ -103,7 +115,11 @@
         }
 
         & .wallet-content {
+<<<<<<< HEAD
           @apply bg-white mt-7 p-10 xs:w-full md:w-[50%] flex justify-between;
+=======
+          @apply bg-white mt-7 p-10 xs:w-full xs:w-[90%] md:w-[50%] flex justify-between;
+>>>>>>> feature/frontend
         }
       }
     }
@@ -137,30 +153,36 @@
     nav {
       .nav-wrapper {
         & {
-          @apply flex h-full xl:w-[1200px] m-auto;
+          @apply flex h-full md:w-[700px] xl:w-[1200px] m-auto xs:justify-center md:justify-start;
         }
 
         & .main-menu-wrapper {
           & {
-            @apply flex justify-center xs:gap-4 lg:gap-24 w-full;
+            @apply flex justify-center gap-24 w-full
           }
 
           & .menu-link {
-            @apply flex items-center;
+            & {
+              @apply flex items-center cursor-pointer;
+            }
+
+            & .active {
+              @apply text-black
+            }
           }
         }
 
         & .logout-wrapper {
-          @apply flex items-center;
+          @apply flex items-center cursor-pointer;
         }
 
         & .logo-wrapper {
-          @apply flex items-center hidden lg:block;
+          @apply flex items-center h-full cursor-pointer;
         }
       }
 
       & {
-        @apply text-black fixed top-0 h-16 min-w-full  bg-white shadow-sm;
+        @apply text-black fixed z-50 top-0 h-16 min-w-full  bg-white shadow-sm;
       }
     }
     .pay-button {
