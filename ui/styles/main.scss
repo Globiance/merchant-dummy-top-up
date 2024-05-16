@@ -71,20 +71,11 @@
 
       & .table-wrapper {
         & {
-<<<<<<< HEAD
-          @apply bg-white mt-7 p-10 xs:w-full md:w-[80%] flex justify-center
-
-        }
-
-        & table {
-          @apply w-full overflow-auto xs:block xl:table
-=======
           @apply bg-white mt-7 p-10 xs:w-full lg:w-[80%] flex justify-center overflow-x-auto;
         }
 
         table {
           @apply w-[1360px]
->>>>>>> feature/frontend
         }
         
       }
@@ -96,11 +87,7 @@
 
         & .transaction-content {
           & {
-<<<<<<< HEAD
-            @apply bg-white mt-7 p-4 xs:w-full lg:w-[50%] flex justify-end;
-=======
             @apply bg-white mt-7 p-4 xs:w-full lg:w-[80%] flex justify-end;
->>>>>>> feature/frontend
           }
 
           button {
@@ -115,11 +102,7 @@
         }
 
         & .wallet-content {
-<<<<<<< HEAD
-          @apply bg-white mt-7 p-10 xs:w-full md:w-[50%] flex justify-between;
-=======
           @apply bg-white mt-7 p-10 xs:w-full xs:w-[90%] md:w-[50%] flex justify-between;
->>>>>>> feature/frontend
         }
       }
     }
