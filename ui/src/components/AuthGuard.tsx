@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { useAuth } from "@/hooks/useAuth";
 import { usePathname, useRouter } from "next/navigation";
@@ -17,18 +17,19 @@ export default function AuthGuard({
   const currentPage =  usePathname()
   const { token } = useAuth();
 
-  const [toBeRendered, setToBeRendered] = useState(<></>)
+  const [isRedirect, setRedirect] = useState<string | null>(null)
 
   useEffect(() => {
     if (login !== currentPage && !token) {
-      router.push(login);
+      setRedirect(login)
     } else if (login === currentPage && token) {
-      router.push(wallet);
-    } else {
-      setToBeRendered(<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>)
-    }
-  }, [token])
+      setRedirect(wallet)
+    } 
+  }, [currentPage, token])
 
- 
-  return toBeRendered
+  if (isRedirect) {
+    router.push(isRedirect)
+  } 
+
+ return (<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>)
 }

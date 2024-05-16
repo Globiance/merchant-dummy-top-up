@@ -37,8 +37,10 @@ export default function NavBar() {
           <h4 className="h4 m-0 p-0">Transactions</h4>
         </a>
       </div>
-      <a onClick={logout} className="a logout-wrapper h4 ">
+      <a onClick={logout} className="a logout-wrapper ">
+        <h4 className="h4">
         <FontAwesomeIcon icon={faRightFromBracket} />
+        </h4>
       </a>
     </div>
   </nav>
