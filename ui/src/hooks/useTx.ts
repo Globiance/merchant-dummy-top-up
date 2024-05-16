@@ -30,5 +30,5 @@ export const useTx = () => {
     refetch();
   };
 
-  return { transactions, reload };
+  return { transactions: transactions(), reload };
 };

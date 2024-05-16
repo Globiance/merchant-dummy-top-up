@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PaymentButton from "./PayButton";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -11,6 +11,11 @@ interface IPaymentCard {
 export default function PaymentCard({ amount, type }: IPaymentCard) {
   const [buttonState, setButtonState] = useState({ amount: 0, disabled: true });
   const { user } = useAuth()
+  const [currentUser, setCurrentUser] = useState({})
+
+  useEffect(() => {
+    setCurrentUser(user as any)
+  }, [user])
 
   const handleOnInput = (event: any) => {
     if ((event.target as any).value) {
@@ -32,7 +37,7 @@ export default function PaymentCard({ amount, type }: IPaymentCard) {
         <div className="payment-card-wrapper">
           <h4 className="h4 marb-5">Top Up</h4>
           <h2 className="h2 marb-8">$ {amount}</h2>
-          <PaymentButton clientId={String((user as any).id)} amount={amount} />
+          <PaymentButton clientId={String((currentUser as any).id)} amount={amount} />
         </div>
       </div>
     );
@@ -52,7 +57,7 @@ export default function PaymentCard({ amount, type }: IPaymentCard) {
             <input type="number" />
           </div>
           <PaymentButton
-            clientId={String((user as any).id)}
+            clientId={String((currentUser as any).id)}
             disabled={buttonState.disabled}
             amount={buttonState.amount}
           />

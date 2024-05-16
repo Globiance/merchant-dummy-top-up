@@ -26,5 +26,5 @@ export const useWallet = () => {
     return data?.data?.balance;
   };
 
-  return { balance, refetch};
+  return { balance: balance(), refetch};
 };

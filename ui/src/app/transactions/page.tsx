@@ -4,6 +4,7 @@ import NavBar from "@/components/NavBar";
 import Table, { IColumn } from "@/components/Table";
 import TransactionCard from "@/components/TransactionCard";
 import { useTx } from "@/hooks/useTx";
+import { useEffect, useState } from "react";
 
 export default function Transactions() {
   const headers: IColumn[] = [
@@ -40,11 +41,17 @@ export default function Transactions() {
   ]
 
   const { transactions } = useTx();
+  const [rows, setRows] = useState([])
 
-  const data = transactions() ?? []
-  const rows = data.map((tx:any, i:number) => {
-    return Object.assign(Object.assign({}, {srno : i + 1}), tx)
-  })
+  useEffect(() => {
+    const data = transactions ? transactions.map((tx:any, i:number) => {
+      return Object.assign(Object.assign({}, {srno : i + 1}), tx)
+    }) : []
+
+    setRows(data)
+  },[transactions])
+
+ 
 
   return (
     <div className="bg-blue-100 min-h-[100vh]">

@@ -4,21 +4,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface IWalletCard {
   balance: number;
+  refetch: () => void
 }
 
-export default function WalletCard({ balance }: IWalletCard) {
-  const { refetch } = useWallet()
-
-  const handleRefetch = () => {
-    refetch()
-  }
+export default function WalletCard({ balance, refetch }: IWalletCard) {
 
   return (
     <div className="wallet-card">
       <div className="wallet-content">
         <h3 className="xl:h3 lg:h4 sm:h5 xs:h6">My wallet balance</h3>
         <span className="xl:h3 lg:h4 sm:h5 xs:h6">$ {balance ? Number(balance).toFixed(2) : ""}
-          <span onClick={handleRefetch} className="ml-5 cursor-pointer"><FontAwesomeIcon className="hover:shadow-xl" icon={faRefresh} />
+          <span onClick={refetch} className="ml-5 cursor-pointer"><FontAwesomeIcon className="hover:shadow-xl" icon={faRefresh} />
           </span>
         </span>
       </div>

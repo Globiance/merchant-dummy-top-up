@@ -3,6 +3,7 @@
 import { useAuth } from "@/hooks/useAuth";
 import { usePathname, useRouter } from "next/navigation";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 
 export default function AuthGuard({
   children,
@@ -14,16 +15,20 @@ export default function AuthGuard({
   const wallet = "/wallet";
   const login = "/login";
   const currentPage =  usePathname()
-
   const { token } = useAuth();
 
-  if (login !== currentPage && !token) {
-    router.push(login);
-  } else if (login === currentPage && token) {
-    router.push(wallet);
-  } else {
-    return (
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    );
-  }
+  const [toBeRendered, setToBeRendered] = useState(<></>)
+
+  useEffect(() => {
+    if (login !== currentPage && !token) {
+      router.push(login);
+    } else if (login === currentPage && token) {
+      router.push(wallet);
+    } else {
+      setToBeRendered(<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>)
+    }
+  }, [token])
+
+ 
+  return toBeRendered
 }

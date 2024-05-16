@@ -10,7 +10,7 @@ export const useAuth = () => {
     "token",
     null
   );
-  const [user, setUser] = useSessionStorage<string | null>("user", null)
+  const [user, setUser] = useSessionStorage("user", null)
 
   const login = async (email: string, password: string) => {
     const response = await fetch(compose("/api/auth/login"), {
