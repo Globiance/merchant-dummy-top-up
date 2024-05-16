@@ -14,9 +14,9 @@ dbConnection()
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use('/api/auth', authRouter)
-app.use('/api/wallet', walletRouter)
-app.use('/api/transaction', transactionRouter)
+app.use('/auth', authRouter)
+app.use('/wallet', walletRouter)
+app.use('/transaction', transactionRouter)
 
 
 
