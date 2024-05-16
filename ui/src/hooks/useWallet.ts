@@ -8,7 +8,7 @@ export const useWallet = () => {
   const { compose } = useApi();
   const { token } = useAuth();
 
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ["balance"],
     queryFn: async () => {
       const res = await fetch(compose("/api/wallet/balance"), {
@@ -26,5 +26,5 @@ export const useWallet = () => {
     return data?.data?.balance;
   };
 
-  return { balance };
+  return { balance, refetch};
 };
