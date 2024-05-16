@@ -27,9 +27,7 @@ export default function PayButton({ amount, disabled, clientId}: IPayButton) {
       ],
     };
 
-    if (typeof window !== 'undefined') {
-      (window as any).Start(payload);
-    }
+    (window as any).Start(payload);    
   };
 
   return (

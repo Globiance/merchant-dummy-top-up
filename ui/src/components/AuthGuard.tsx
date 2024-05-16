@@ -29,6 +29,16 @@ export default function AuthGuard({
     }
   }, [currentPage, token])
 
+  useEffect(() => {
+    if (login !== currentPage && !token) {
+      setRedirect(login)
+    } else if (login === currentPage && token) {
+      setRedirect(wallet)
+    } else {
+      setRedirect(null)
+    }
+  }, [])
+
   if (isRedirect) {
     router.push(isRedirect)
   } 
