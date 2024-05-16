@@ -21,15 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <script src={process.env.NEXT_PUBLIC_WIDGET_CDN}></script>
-      </head>
       <body className={roboto.className}>
         
         <AuthGuard>
           <StyleGuard>{children}</StyleGuard>
         </AuthGuard>
         <div id="widget"></div>
+        <script src={process.env.NEXT_PUBLIC_WIDGET_CDN}></script>
       </body>
     </html>
   );
