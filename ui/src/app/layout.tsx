@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -20,16 +21,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script src={process.env.NEXT_PUBLIC_WIDGET_CDN}></script>
+      </head>
       <body className={roboto.className}>
         
         <AuthGuard>
           <StyleGuard>{children}</StyleGuard>
         </AuthGuard>
         <div id="widget"></div>
-        <Script
-        src={process.env.NEXT_PUBLIC_WIDGET_CDN}
-        strategy="beforeInteractive"
-      />
       </body>
     </html>
   );
