@@ -21,7 +21,6 @@ const getTransactions = async (req, res) => {
 };
 
 const paymentWebhook = async (req, res) => {
-    const t = await db.transaction();
     try {
 
         console.log(req.body, "got webhook");
@@ -43,7 +42,7 @@ const paymentWebhook = async (req, res) => {
             return res.status(500).send('Client ID is mandatory');
         }
         if (event === 'confirmed' && type === 'payment' && status === 'confirmed') {
-            let userWallet = await Wallet.findOne({ where: { userId: clientId } }, { transaction: t })
+            let userWallet = await Wallet.findOne({ where: { userId: clientId } })
 
             if (!userWallet) return res.status(500).send('Wallet not found');
 
@@ -57,7 +56,7 @@ const paymentWebhook = async (req, res) => {
                 {
                     where: { id: userWallet.id },
                     returning: true,
-                    transaction: t
+                    // transaction: t
                 }
             )
 
@@ -67,7 +66,7 @@ const paymentWebhook = async (req, res) => {
                 status: event,
                 checkoutId,
                 initiatedAt: checkoutTime
-            }, { transaction: t })
+            })
 
             await t.commit()
             return res.status(200).json({
@@ -82,16 +81,16 @@ const paymentWebhook = async (req, res) => {
                 status: event,
                 checkoutId,
                 initiatedAt: checkoutTime
-            }, { transaction: t })
+            })
 
-            t.commit()
+            // t.commit()
             return res.status(200).json({
                 data: null,
                 message: 'Webhook triggered successfully!'
             })
         }
     } catch (error) {
-        await t.rollback()
+        // await t.rollback()
         console.log(error.message);
         res.status(500).send('Internal server error! please try again');
     }
