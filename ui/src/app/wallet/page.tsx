@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 "use client";
 
 import NavBar from "@/components/NavBar";
@@ -8,19 +9,26 @@ import { useEffect, useState } from "react";
 
 export default function Wallet() {
   const { balance, refetch } = useWallet();
-  const [currentBalance, setCurrentBalance] = useState<string>("0")
+  const [currentBalance, setCurrentBalance] = useState<string>("0");
 
   useEffect(() => {
-    setCurrentBalance(balance)
-  },[balance])
+    setCurrentBalance(balance);
+  }, [balance]);
 
   return (
-    <div className="bg-blue-100 min-h-[100vh]">
-      <NavBar />
-      <div className="main-content">
-        <WalletCard balance={Number(currentBalance)} refetch={() => refetch()}  />
-        <PaymentCardSection />
+    <>
+      <div id="widget"></div>
+      <script src={process.env.NEXT_PUBLIC_WIDGET_CDN}></script>
+      <div className="bg-blue-100 min-h-[100vh]">
+        <NavBar />
+        <div className="main-content">
+          <WalletCard
+            balance={Number(currentBalance)}
+            refetch={() => refetch()}
+          />
+          <PaymentCardSection />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

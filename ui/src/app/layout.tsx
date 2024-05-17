@@ -1,13 +1,10 @@
-/* eslint-disable @next/next/no-script-component-in-head */
 /* eslint-disable @next/next/no-sync-scripts */
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "@/styles/main.scss";
-import Script from "next/script";
 import AuthGuard from "@/components/AuthGuard";
 import StyleGuard from "@/components/StyleGuard";
-import Head from "next/head";
 
 const roboto = Roboto({ weight: "500", subsets: ["latin"] });
 
@@ -27,8 +24,6 @@ export default function RootLayout({
         <AuthGuard>
           <StyleGuard>{children}</StyleGuard>
         </AuthGuard>
-        <div id="widget"></div>
-        <script src={process.env.NEXT_PUBLIC_WIDGET_CDN}></script>
       </body>
     </html>
   );
