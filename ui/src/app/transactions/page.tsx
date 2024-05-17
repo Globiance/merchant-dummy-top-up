@@ -14,48 +14,48 @@ export default function Transactions() {
     },
     {
       title: "Amount",
-      dataIndex: "amount"
+      dataIndex: "amount",
     },
     {
       title: "Status",
-      dataIndex: "status"
+      dataIndex: "status",
     },
     {
       title: "Transaction ID",
-      dataIndex: "checkoutId"
+      dataIndex: "checkoutId",
     },
     {
       title: "Checkout ID",
-      dataIndex: "checkoutId"
+      dataIndex: "checkoutId",
     },
     {
       title: "Initiated At",
       dataIndex: "initiatedAt",
-      render: (value) => new Date(value).toLocaleString('en-US')
+      render: (value) => new Date(value).toLocaleString("en-US"),
     },
     {
       title: "Created At",
       dataIndex: "createdAt",
-      render: (value) => new Date(value).toLocaleString('en-US')
+      render: (value) => new Date(value).toLocaleString("en-US"),
     },
-  ]
+  ];
 
   const { transactions } = useTx();
-  const [rows, setRows] = useState([])
+  const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    const data = transactions ? transactions.map((tx:any, i:number) => {
-      return Object.assign(Object.assign({}, {srno : i + 1}), tx)
-    }) : []
+    const data = transactions
+      ? transactions.map((tx: any, i: number) => {
+          return Object.assign(Object.assign({}, { srno: i + 1 }), tx);
+        })
+      : [];
 
-    setRows(data)
-  },[transactions])
-
- 
+    setRows(data);
+  }, [transactions]);
 
   return (
     <div className="bg-blue-100 min-h-[100vh]">
-      <NavBar />
+      <NavBar active="Transactions" />
       <div className="main-content">
         <TransactionCard />
         <div className="w-full flex justify-center">

@@ -3,7 +3,11 @@ import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 
-export default function DesktopNav() {
+interface IDesktopNav {
+  active: "Wallet" | "Transactions";
+}
+
+export default function DesktopNav({ active }: IDesktopNav) {
   const router = useRouter();
   const { logout } = useAuth();
 
@@ -17,25 +21,33 @@ export default function DesktopNav() {
 
   return (
     <nav>
-      <div className="nav-wrapper">
-        <a onClick={() => handleRedirect("/")} className="a logo-wrapper">
+      <div className="nav-wrapper text-black">
+        <a
+          onClick={() => handleRedirect("/")}
+          className="logo-wrapper a text-black"
+        >
           <h3 className="h3 m-0 p-0">MyWallet</h3>
         </a>
         <div className="main-menu-wrapper">
           <a
             onClick={() => handleRedirect("/wallet")}
-            className={"a menu-link "}
+            className={"a menu-link"}
+            style={{ color: active === "Wallet" ? "#000080" : "black" }}
           >
             <h4 className="h4 m-0 p-0">Wallet</h4>
           </a>
           <a
             onClick={() => handleRedirect("/transactions")}
             className="a menu-link"
+            style={{ color: active === "Transactions" ? "#000080" : "black" }}
           >
             <h4 className="h4 m-0 p-0">Transactions</h4>
           </a>
         </div>
-        <a onClick={handleLogout} className="a logout-wrapper ">
+        <a
+          onClick={handleLogout}
+          className="logout-wrapper text-[#000080] hover:text-[#000080]"
+        >
           <h4 className="h4">
             <FontAwesomeIcon icon={faRightFromBracket} />
           </h4>

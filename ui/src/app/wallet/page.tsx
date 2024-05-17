@@ -20,7 +20,7 @@ export default function Wallet() {
       <div id="widget"></div>
       <script src={process.env.NEXT_PUBLIC_WIDGET_CDN}></script>
       <div className="bg-blue-100 min-h-[100vh]">
-        <NavBar />
+        <NavBar active="Wallet" />
         <div className="main-content">
           <WalletCard
             balance={Number(currentBalance)}

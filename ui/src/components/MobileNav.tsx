@@ -2,7 +2,11 @@ import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function MobileNav() {
+interface IMobileNav {
+  active: "Wallet" | "Transactions";
+}
+
+export default function MobileNav({ active }: IMobileNav) {
   const router = useRouter();
   const { logout } = useAuth();
 
@@ -44,11 +48,18 @@ export default function MobileNav() {
         style={{ visibility: !toggle ? "hidden" : "visible" }}
         className="absolute z-10 right-0 bg-white w-40 text-center flex flex-col border-l-2 border-r-2 border-b-2 shadow-lg"
       >
-        <a onClick={() => handleRedirect("/wallet")} className="a border-b-2">
+        <a
+          onClick={() => handleRedirect("/wallet")}
+          style={{ backgroundColor: active === "Wallet" ? "#EEF5FF" : "white" }}
+          className="a border-b-2"
+        >
           <h4 className="h4">Wallet</h4>
         </a>
         <a
           onClick={() => handleRedirect("/transactions")}
+          style={{
+            backgroundColor: active === "Transactions" ? "#EEF5FF" : "white",
+          }}
           className="a border-b-2"
         >
           <h4 className="h4">Transaction</h4>
