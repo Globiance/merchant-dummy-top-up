@@ -1,9 +1,8 @@
 "use client";
 
 import { useAuth } from "@/hooks/useAuth";
-import { usePathname, useRouter } from "next/navigation";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { AuthContext } from "@/contexts/auth";
 
 export default function AuthGuard({
   children,
@@ -11,29 +10,11 @@ export default function AuthGuard({
   children: React.ReactNode;
 }>) {
   const queryClient = new QueryClient();
-  const router = useRouter();
-  const wallet = "/wallet";
-  const login = "/login";
-  const currentPage = usePathname();
-  const { token } = useAuth();
-
-  const [isRedirect, setRedirect] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (login !== currentPage && !token) {
-      setRedirect(login);
-    } else if (login === currentPage && token) {
-      setRedirect(wallet);
-    } else {
-      setRedirect(null);
-    }
-  }, [currentPage, token]);
-
-  if (isRedirect) {
-    router.push(isRedirect);
-  }
+  const { token, user, setToken } = useAuth();
 
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <AuthContext.Provider value={{ user, setToken, token: token as string }}>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    </AuthContext.Provider>
   );
 }

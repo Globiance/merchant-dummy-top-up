@@ -28,7 +28,7 @@ export const useAuth = () => {
       setValue(resBody.data.token);
       setUser(resBody.data.user);
 
-      router.push("/wallet");
+      router.replace("/wallet");
       return null;
     } else {
       return resBody.message;

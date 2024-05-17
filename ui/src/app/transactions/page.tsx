@@ -3,8 +3,10 @@
 import NavBar from "@/components/NavBar";
 import Table, { IColumn } from "@/components/Table";
 import TransactionCard from "@/components/TransactionCard";
+import { AuthContext } from "@/contexts/auth";
 import { useTx } from "@/hooks/useTx";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
 
 export default function Transactions() {
   const headers: IColumn[] = [
@@ -42,6 +44,14 @@ export default function Transactions() {
 
   const { transactions } = useTx();
   const [rows, setRows] = useState([]);
+  const { user } = useContext(AuthContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user) {
+      router.replace("/login");
+    }
+  });
 
   useEffect(() => {
     const data = transactions
