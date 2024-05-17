@@ -17,8 +17,6 @@ export default function Wallet() {
 
   return (
     <>
-      <div id="widget"></div>
-      <script src={process.env.NEXT_PUBLIC_WIDGET_CDN}></script>
       <div className="bg-blue-100 min-h-[100vh]">
         <NavBar active="Wallet" />
         <div className="main-content">

@@ -24,6 +24,8 @@ export default function RootLayout({
         <AuthGuard>
           <StyleGuard>{children}</StyleGuard>
         </AuthGuard>
+        <div id="widget"></div>
+        <script src={process.env.NEXT_PUBLIC_WIDGET_CDN}></script>
       </body>
     </html>
   );
