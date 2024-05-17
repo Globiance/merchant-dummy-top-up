@@ -3,10 +3,10 @@
 interface IPayButton {
   amount: number;
   disabled?: boolean;
-  clientId: string
+  clientId: string;
 }
 
-export default function PayButton({ amount, disabled, clientId}: IPayButton) {
+export default function PayButton({ amount, disabled, clientId }: IPayButton) {
   const handleOnClick = () => {
     const payload = {
       amount: 2,
@@ -27,7 +27,9 @@ export default function PayButton({ amount, disabled, clientId}: IPayButton) {
       ],
     };
 
-    (window as any).Start(payload);    
+    if (typeof window !== "undefined") {
+      (window as any).Start(payload);
+    }
   };
 
   return (

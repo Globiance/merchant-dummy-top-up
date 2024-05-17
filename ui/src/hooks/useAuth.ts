@@ -1,6 +1,7 @@
 import { useRouter } from "next/navigation";
 import { useSessionStorage } from "usehooks-ts";
 import { useApi } from "./useApi";
+import { useState } from "react";
 
 export const useAuth = () => {
   const { compose } = useApi();
@@ -10,7 +11,7 @@ export const useAuth = () => {
     "token",
     null
   );
-  const [user, setUser] = useSessionStorage("user", null)
+  const [user, setUser] = useSessionStorage("user", null);
 
   const login = async (email: string, password: string) => {
     const response = await fetch(compose("/api/auth/login"), {
@@ -21,12 +22,16 @@ export const useAuth = () => {
       body: JSON.stringify({ email, password }),
     });
 
+    const resBody = await response.json();
+
     if (response.status === 200) {
-      const resBody = await response.json();
       setValue(resBody.data.token);
-      setUser(resBody.data.user)
+      setUser(resBody.data.user);
 
       router.push("/wallet");
+      return null;
+    } else {
+      return resBody.message;
     }
   };
 
@@ -62,11 +67,14 @@ export const useAuth = () => {
       body: JSON.stringify({ name, email, password, confirmed }),
     });
 
-    if (response.status === 200) {
-      const resBody = await response.json();
-      setToken(resBody.data.token);
+    const resBody = await response.json();
 
+    if (response.status === 200) {
+      setToken(resBody.data.token);
       router.push("/wallet");
+      return null;
+    } else {
+      return resBody.message;
     }
   };
 

@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "@/hooks/useAuth";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function DesktopNav() {
   const router = useRouter();
