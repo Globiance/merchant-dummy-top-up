@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface IDesktopNav {
   active: "Wallet" | "Transactions";
@@ -22,12 +23,9 @@ export default function DesktopNav({ active }: IDesktopNav) {
   return (
     <nav>
       <div className="nav-wrapper text-black">
-        <a
-          onClick={() => handleRedirect("/")}
-          className="logo-wrapper a text-black"
-        >
+        <Link href={"/"} className="logo-wrapper a text-black">
           <h3 className="h3 m-0 p-0">MyWallet</h3>
-        </a>
+        </Link>
         <div className="main-menu-wrapper">
           <a
             onClick={() => handleRedirect("/wallet")}
