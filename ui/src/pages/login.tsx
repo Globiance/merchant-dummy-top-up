@@ -1,10 +1,8 @@
-"use client";
-
 import LoginForm from "@/components/LoginForm";
 import RegisterForm from "@/components/RegisterForm";
 import { useState } from "react";
 
-export default function Login() {
+export default function LoginPage() {
   const [tab, setTab] = useState<"login" | "register">("login");
 
   const handleTab = (tabClicked: string) => {
