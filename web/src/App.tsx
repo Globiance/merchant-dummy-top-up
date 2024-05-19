@@ -1,19 +1,20 @@
-import { version, Component, type InfernoNode } from 'inferno';
-import Logo from './logo';
-import './App.css';
+import { type InfernoNode } from 'inferno'
+import { type UnknownAction, configureStore } from '@reduxjs/toolkit'
+import { Provider } from 'inferno-redux'
+import Main from './pages/Main'
 
-export default class App extends Component {
-  render(): InfernoNode {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <Logo width={80} height={80} />
-          <p>{`Welcome to Inferno ${version}`}</p>
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-        </header>
-      </div>
-    );
-  }
+// const store = configureStore({
+//   reducer: function (state: any, action: UnknownAction) {
+//     throw new Error('Function not implemented.')
+//   }
+// })
+
+const App = (): InfernoNode => {
+  return (
+    <Provider store={{} as any}>
+      <Main />
+    </Provider>
+  )
 }
+
+export default App
