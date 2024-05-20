@@ -55,6 +55,7 @@ export default class LoginForm extends Component<any, any> {
   }
 
   render(props: Readonly<any>, state: Readonly<any>): InfernoNode {
+    console.log(state.redirectComponent)
     return state?.redirectComponent ? (
       state.redirectComponent
     ) : (

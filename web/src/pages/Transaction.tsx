@@ -1,3 +1,4 @@
+import { transactions } from '@/api'
 import NavBar from '@/components/NavBar'
 import Table, { type IColumn } from '@/components/Table'
 import TransactionCard from '@/components/TransactionCard'
@@ -37,15 +38,46 @@ export default class TransactionPage extends Component<any, any> {
     }
   ]
 
-  render(): InfernoNode {
+  constructor(props: any) {
+    super(props)
+    this.state = { data: [] }
+  }
+
+  componentDidMount(): void {
+    this.fetchTransaction().catch(console.log)
+  }
+
+  async fetchTransaction(): Promise<void> {
+    const token = sessionStorage.getItem('token')
+    const result = await transactions(token ?? '')
+
+    this.setState(
+      Object.assign(
+        { ...this.state },
+        {
+          data: await Promise.all(
+            result.map(async (row: any, i: number) => {
+              return { srno: i + 1, ...row }
+            })
+          )
+        }
+      )
+    )
+  }
+
+  render(props: Readonly<any>, state: Readonly<any>): InfernoNode {
     return (
-      <div className="bg-blue-100 min-h-[100vh]">
+      <div>
         <NavBar active="Transactions" />
         <div className="main-content">
-          <TransactionCard />
+          <TransactionCard
+            refetch={() => {
+              this.fetchTransaction().catch(console.log)
+            }}
+          />
           <div className="w-full flex justify-center">
             <div className="table-wrapper">
-              <Table data={[]} columns={this.headers} />
+              <Table data={state?.data} columns={this.headers} />
             </div>
           </div>
         </div>
@@ -53,39 +85,3 @@ export default class TransactionPage extends Component<any, any> {
     )
   }
 }
-
-//   const { transactions } = useTx()
-//   const [rows, setRows] = useState([])
-//   const { user } = useContext(AuthContext)
-//   const router = useRouter()
-
-//   useEffect(() => {
-//     if (!user) {
-//       router.replace('/login')
-//     }
-//   })
-
-//   useEffect(() => {
-//     const data = transactions
-//       ? transactions.map((tx: any, i: number) => {
-//           return Object.assign(Object.assign({}, { srno: i + 1 }), tx)
-//         })
-//       : []
-
-//     setRows(data)
-//   }, [transactions])
-
-//   return (
-//     <div className="bg-blue-100 min-h-[100vh]">
-//       <NavBar active="Transactions" />
-//       <div className="main-content">
-//         <TransactionCard />
-//         <div className="w-full flex justify-center">
-//           <div className="table-wrapper">
-//             <Table data={rows} columns={headers} />
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }

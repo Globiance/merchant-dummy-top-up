@@ -4,7 +4,7 @@ import PayButton from './PayButton'
 export default class PaymentCard extends Component<any, any> {
   constructor(props: any) {
     super(props)
-    this.state = { disabled: true, amount: 0 }
+    this.state = { disabled: true, amount: 0, clientId: 0 }
   }
 
   handleOnInput(e: Event): void {
@@ -31,14 +31,22 @@ export default class PaymentCard extends Component<any, any> {
     }
   }
 
-  render(props: any): InfernoNode {
+  componentDidMount(): void {
+    const user = sessionStorage.getItem('user')!
+
+    this.setState(
+      Object.assign({ ...this.state }, { clientId: JSON.parse(user).clientId })
+    )
+  }
+
+  render(props: any, state: any): InfernoNode {
     if (props.type === 'static') {
       return (
         <div className="xl:w-1/3 xs:w-full">
           <div className="payment-card-wrapper">
             <h4 className="h4 marb-5">Top Up</h4>
             <h2 className="h2 marb-8">$ {props.amount}</h2>
-            <PayButton clientId={String(1)} amount={this.props.amount} />
+            <PayButton clientId={state?.clientId} amount={this.props.amount} />
           </div>
         </div>
       )
@@ -60,7 +68,7 @@ export default class PaymentCard extends Component<any, any> {
               <input type="number" />
             </div>
             <PayButton
-              clientId={String(1)}
+              clientId={state?.clientId}
               disabled={this.state?.disabled}
               amount={this.state?.amount}
             />

@@ -7,11 +7,16 @@ interface IPayButton {
 }
 
 export default class PayButton extends Component<IPayButton, any> {
+  constructor({ clientId, disabled, amount }: IPayButton) {
+    super({ clientId, disabled, amount })
+    this.state = {}
+  }
+
   handleOnClick(): void {
     const payload = {
       amount: 2,
       note: 'Top up payment',
-      apikey: process.env.NEXT_PUBLIC_API_KEY,
+      apikey: process.env.INFERNO_APP_API_KEY,
       language: 'en',
       theme: 'light',
       itemName: `Topup $ ${this.props.amount}`,

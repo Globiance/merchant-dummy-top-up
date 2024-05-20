@@ -15,17 +15,19 @@ export default class WalletCard extends Component<any, any> {
     this.setState(Object.assign({}, { refreshIcon: i.html[0] }))
   }
 
-  render(): InfernoNode {
+  render(props: Readonly<any>, state: Readonly<any>): InfernoNode {
     return (
       <div className="wallet-card">
         <div className="wallet-content">
           <h3 className="xl:h3 lg:h4 sm:h5 xs:h6">My wallet balance</h3>
           <span className="xl:h3 lg:h4 sm:h5 xs:h6">
-            $ {this.props.balance ? Number(this.props.balance).toFixed(2) : '0'}
+            $ {this.props.balance ? Number(props.balance).toFixed(2) : '0'}
             <span
-              onClick={() => {}}
+              onClick={() => {
+                props.refetch()
+              }}
               className="ml-5 cursor-pointer"
-              dangerouslySetInnerHTML={{ __html: this.state?.refreshIcon }}
+              dangerouslySetInnerHTML={{ __html: state?.refreshIcon }}
             ></span>
           </span>
         </div>
