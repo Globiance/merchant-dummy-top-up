@@ -6,11 +6,6 @@
 @tailwind utilities;
 
 @layer base {
-  html,
-  body {
-    @apply bg-blue-100 min-h-[100dvh];
-  }
-
   .tu-jif4 {
     &.body {
       @apply bg-blue-100 min-h-[100vh];
