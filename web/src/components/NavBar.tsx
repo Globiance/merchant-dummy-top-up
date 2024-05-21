@@ -59,7 +59,6 @@ export default class NavBar extends Component<any, any> {
   }
 
   render(props: Readonly<any>, state: Readonly<any>): InfernoNode {
-    console.log(state)
     return (
       <div>
         {state.redirectTo ? (
