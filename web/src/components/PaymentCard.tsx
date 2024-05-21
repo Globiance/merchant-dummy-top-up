@@ -33,9 +33,8 @@ export default class PaymentCard extends Component<any, any> {
 
   componentDidMount(): void {
     const user = sessionStorage.getItem('user')!
-
     this.setState(
-      Object.assign({ ...this.state }, { clientId: JSON.parse(user).clientId })
+      Object.assign({ ...this.state }, { clientId: JSON.parse(user).id })
     )
   }
 
@@ -46,7 +45,10 @@ export default class PaymentCard extends Component<any, any> {
           <div className="payment-card-wrapper">
             <h4 className="h4 marb-5">Top Up</h4>
             <h2 className="h2 marb-8">$ {props.amount}</h2>
-            <PayButton clientId={state?.clientId} amount={this.props.amount} />
+            <PayButton
+              clientId={String(state?.clientId)}
+              amount={this.props.amount}
+            />
           </div>
         </div>
       )
@@ -68,7 +70,7 @@ export default class PaymentCard extends Component<any, any> {
               <input type="number" />
             </div>
             <PayButton
-              clientId={state?.clientId}
+              clientId={String(state?.clientId)}
               disabled={this.state?.disabled}
               amount={this.state?.amount}
             />
