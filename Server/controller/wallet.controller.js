@@ -1,8 +1,7 @@
-// controllers/walletController.js
 const Wallet = require("../model/wallet.model");
 
 const readBalance = async (req, res) => {
-    const { userId } = req.user; // Assuming userId is attached to req.user by the auth middleware
+    const { userId } = req.user; 
     try {
         const wallet = await Wallet.findOne({ where: { userId } });
         if (!wallet) {
